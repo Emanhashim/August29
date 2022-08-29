@@ -3,6 +3,7 @@ package com.bazra.usermanagement.controller;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -29,6 +30,8 @@ public class DocumentTypeController {
 	@Autowired
 	DocumentTypeRepository documentTypeRepository;
 	@PostMapping("/Create")
+
+	@ApiOperation(value = "CREATE DOCUMENT TYPE")
 	public ResponseEntity<?> createDocumentType(@RequestBody CreateDocumentTypeRequest createDocumentTypeRequest, Authentication authentication){
 		Optional<Document_Type> documenttype = documentTypeRepository.findByName(createDocumentTypeRequest.getName());
 		Account adminAccount= accountRepository.findByAccountNumberEquals(authentication.getName()).get();
